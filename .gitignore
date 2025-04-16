@@ -1,0 +1,22 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# System files
+.DS_Store
+
+# IDE settings
+.idea/
+.vscode/
+
+# Ignore node_modules and environment files in sub-projects
+/Eventify/node_modules/
+/Eventify/.env
+/Eventify/.DS_Store
+/Eventify/.vscode/
+
+/Backend/node_modules/
+/Backend/.env
+/Backend/.DS_Store
