@@ -1,36 +1,34 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import Dashboard from './pages/Dashboard';
-// import Events from './pages/Events';
-import Users from './pages/Users';
-import Profile from './pages/Profile';
-// import Settings from './pages/Settings';
-import Organizers from './pages/Organizers';
+import { Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
+import Dashboard from './pages/Dashboard';
+import Users from './pages/Users';
+import Profile from './pages/Profile';
+import Organizers from './pages/Organizers';
+import Sidebar from './components/Sidebar';
+// import Footer from './components/Footer';
+import AuthLayout from './layouts/AuthLayout';
+import MainLayout from './layouts/MainLayout';
 
 function App() {
   return (
-  <div className="flex">
-    <Sidebar />
-    <div className="flex-1">
-      <Routes>
+    <Routes>
+      {/* Auth pages without sidebar */}
+      <Route element={<AuthLayout />}>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
+      </Route>
+
+      {/* App pages with sidebar + footer */}
+      <Route element={<MainLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
-        {/* <Route path="/events" element={<Events />} /> */}
         <Route path="/users" element={<Users />} />
         <Route path="/organizers" element={<Organizers />} />
         <Route path="/profile" element={<Profile />} />
-        {/* <Route path="/settings" element={<Settings />} /> */}
-      </Routes>
-    </div>
-  </div>
-
-
+      </Route>
+    </Routes>
   );
 }
 
 export default App;
-
