@@ -13,10 +13,9 @@ const app = express();
 
 // Middleware
 const corsOptions = {
-    origin: 'http://localhost:5000',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
-    preflightContinue: false,
   };
   app.use(cors(corsOptions));
   app.use(express.json());
@@ -26,7 +25,7 @@ const corsOptions = {
 app.get('/', (req, res) => {
     res.send('API is running');
   });
-app.use('/api', authroutes);
+app.use('/api/auth', authroutes);
 
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
