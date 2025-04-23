@@ -5,22 +5,12 @@ import { useNavigate } from 'react-router-dom';
 function Dashboard() {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/');
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-500 via-indigo-600 to-pink-500 flex flex-col items-center justify-start text-white font-poppins animate-fade-in">
       {/* Header */}
       <div className="w-full max-w-6xl p-6 flex justify-between items-center">
         <h1 className="text-3xl font-extrabold tracking-tight">Dashboard</h1>
-        <button
-          onClick={handleLogout}
-          className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-4 py-2 rounded-lg hover:from-pink-600 hover:to-purple-600 transition duration-300"
-        >
-          <FaSignOutAlt /> Logout
-        </button>
+        
       </div>
 
       {/* Welcome Banner */}

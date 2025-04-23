@@ -1,32 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaTachometerAlt, FaCalendarAlt, FaUserFriends, FaUserCircle, FaCog, FaUsers } from 'react-icons/fa';
+import { 
+  FaTachometerAlt, FaCalendarAlt, FaUserFriends, FaUserCircle, 
+  FaCog, FaUsers, FaBars, FaSignOutAlt 
+} from 'react-icons/fa';
 
 function Sidebar() {
-  return (
-    <div className="h-screen w-64 bg-white shadow-2xl p-6 flex flex-col font-poppins animate-slide-in-left">
-      <h1 className="text-3xl font-extrabold text-purple-600 mb-12 text-center">EventDash</h1>
+  const [isOpen, setIsOpen] = useState(true);
 
-      <NavLink to="/dashboard" className="flex items-center gap-3 py-3 px-4 rounded-lg text-gray-800 hover:bg-purple-100 mb-2">
-        <FaTachometerAlt /> Dashboard
-      </NavLink>
-      <NavLink to="/events" className="flex items-center gap-3 py-3 px-4 rounded-lg text-gray-800 hover:bg-purple-100 mb-2">
-        <FaCalendarAlt /> Events
-      </NavLink>
-      <NavLink to="/users" className="flex items-center gap-3 py-3 px-4 rounded-lg text-gray-800 hover:bg-purple-100 mb-2">
-        <FaUserFriends /> Users
-      </NavLink>
-      <NavLink to="/organizers" className="flex items-center gap-3 py-3 px-4 rounded-lg text-gray-800 hover:bg-purple-100 mb-2">
-        <FaUsers /> Organizers
-      </NavLink>
-      <NavLink to="/profile" className="flex items-center gap-3 py-3 px-4 rounded-lg text-gray-800 hover:bg-purple-100 mb-2">
-        <FaUserCircle /> Profile
-      </NavLink>
-      <NavLink to="/settings" className="flex items-center gap-3 py-3 px-4 rounded-lg text-gray-800 hover:bg-purple-100">
-        <FaCog /> Settings
-      </NavLink>
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <div 
+      className={`h-screen bg-gray-200 shadow-2xl p-4 flex flex-col 
+      ${isOpen ? 'w-64' : 'w-20'} transition-all duration-500 font-poppins animate-slide-in-left`}
+    >
+      {/* Toggle Button */}
+      <button 
+        onClick={toggleSidebar} 
+        className="text-purple-600 text-2xl ml-3 mb-6 focus:outline-none"
+      >
+        <FaBars />
+      </button>
+
+      {/* Title */}
+      {isOpen && <h1 className="text-3xl font-extrabold text-purple-600 mb-12 text-center">Eventify</h1>}
+
+      {/* Nav Links */}
+      <NavItem to="/dashboard" icon={<FaTachometerAlt />} label="Dashboard" isOpen={isOpen} />
+      <NavItem to="/events" icon={<FaCalendarAlt />} label="Events" isOpen={isOpen} />
+      <NavItem to="/users" icon={<FaUserFriends />} label="Users" isOpen={isOpen} />
+      <NavItem to="/organizers" icon={<FaUsers />} label="Organizers" isOpen={isOpen} />
+      <NavItem to="/profile" icon={<FaUserCircle />} label="Profile" isOpen={isOpen} />
+      <NavItem to="/settings" icon={<FaCog />} label="Settings" isOpen={isOpen} />
+
+      <div className="mt-auto">
+        <NavItem to="/" icon={<FaSignOutAlt />} label="Logout" isOpen={isOpen} />
+      </div>
     </div>
   );
 }
+
+const NavItem = ({ to, icon, label, isOpen }) => (
+  <NavLink
+    to={to}
+    className="flex items-center gap-3 py-3 px-4 rounded-lg text-gray-800 hover:bg-purple-100 mb-2 transition duration-300"
+  >
+    <span className="text-2xl">{icon}</span>
+    {isOpen && <span>{label}</span>}
+  </NavLink>
+);
 
 export default Sidebar;

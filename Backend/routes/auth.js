@@ -1,8 +1,8 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const router = express.Router();
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 
+const router = express.Router();
 // In-memory dummy user data (replace later with DB)
 const users = [
   { id: 1, email: 'admin@gmail.com', password: bcrypt.hashSync('123456', 10), role: 'admin' },
@@ -33,4 +33,4 @@ router.post('/logout', (req, res) => {
   res.clearCookie('token').json({ message: 'Logged out' });
 });
 
-module.exports = router;
+export default router;

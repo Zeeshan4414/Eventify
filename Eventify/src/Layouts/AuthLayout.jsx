@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 function AuthLayout() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
+    <div className="flex flex-col min-h-screen bg-gray-50">
       <Outlet />
     </div>
   );

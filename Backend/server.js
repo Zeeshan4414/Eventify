@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
-
+import authroutes from './routes/auth.js';
 dotenv.config();
 
 // Connect to MongoDB
@@ -26,8 +26,7 @@ const corsOptions = {
 app.get('/', (req, res) => {
     res.send('API is running');
   });
-const authRoutes = require('./routes/auth');
-app.use('/api', authRoutes);
+app.use('/api', authroutes);
 
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
