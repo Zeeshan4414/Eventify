@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import EventifyLogo from '../assets/Eventify.png'; 
 import { 
   FaTachometerAlt, FaCalendarAlt, FaUserFriends, FaUserCircle, 
   FaCog, FaUsers, FaBars, FaSignOutAlt 
 } from 'react-icons/fa';
 
 function Sidebar() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -15,7 +16,7 @@ function Sidebar() {
   return (
     <div 
       className={`h-screen bg-gray-200 shadow-2xl p-4 flex flex-col 
-      ${isOpen ? 'w-64' : 'w-20'} transition-all duration-500 font-poppins animate-slide-in-left`}
+      ${isOpen ? 'w-64' : 'w-20'} transition-all duration-500 font-poppins animate-slide-in-left animate-slide-in-right`}
     >
       {/* Toggle Button */}
       <button 
@@ -26,7 +27,7 @@ function Sidebar() {
       </button>
 
       {/* Title */}
-      {isOpen && <h1 className="text-3xl font-extrabold text-purple-600 mb-12 text-center">Eventify</h1>}
+      {isOpen && <img src={EventifyLogo} alt="Logo" className="w-52 h-28 rounded-2xl mb-6" />}
 
       {/* Nav Links */}
       <NavItem to="/dashboard" icon={<FaTachometerAlt />} label="Dashboard" isOpen={isOpen} />
